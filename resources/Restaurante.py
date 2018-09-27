@@ -11,7 +11,7 @@ class Restaurante(Resource):
     def get(self):
         restaurantes = Restaurant.query.all()
         print("Here")
-        restaurantes = restaurantes_schema .dump(restaurantes).data
+        restaurantes = restaurantes_schema.dump(restaurantes).data
         return {'status': 'success', 'data': restaurantes}, 200
 
     def post(self):
@@ -30,8 +30,14 @@ class Restaurante(Resource):
             id=json_data['id'],
             rating =  json_data['rating'],
             name = json_data['name'],
+            site = json_data['site'],
             email = json_data['email'],
-            phone = json_data['phone']
+            phone = json_data['phone'],
+            street = json_data['street'],
+            city = json_data['city'],
+            state = json_data['state'],
+            lat = json_data['lat'],
+            lng = json_data['lng']
             )
         db.session.add(restaurante)
         db.session.commit()
@@ -45,12 +51,13 @@ class Restaurante(Resource):
         if not json_data:
                return {'message': 'No input data provided'}, 400
         data, errors = restaurant_schema.load(json_data)
+        print("Errors :",data)
         if errors:
             return errors, 422
         restaurant = Restaurant.query.filter_by(id=data['id']).first()
         if not restaurant:
             return {'message': 'Restaurant does not exist'}, 400
-        restaurant.name = data['name']
+        Restaurant.query.filter_by(id=data['id']).update(data)
         db.session.commit()
         result = restaurant_schema.dump(restaurant).data 
         #print ("El resultado es :",result)
@@ -67,4 +74,4 @@ class Restaurante(Resource):
         db.session.commit()
         result = restaurant_schema.dump(restaurant).data
         #print ("El resultado es :",result)
-        return { "status": 'success', 'data': result,'message': 'Resgister delete'}, 200
+        return { "status": 'success', 'data': result,'message': 'Register delete'}, 200
