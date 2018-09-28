@@ -1,6 +1,6 @@
 # Melp RESTful API
 
-This API provides useful information about some restaurants.
+This API provides useful information about some restaurants :notebook_with_decorative_cover: .
 
 ## Install guide
 
@@ -34,9 +34,15 @@ $ pip3 migrate.py db migrate
 $ pip3 migrate.py db upgrade
 ```
 
+##### Execute the App
+```bash
+$ pip3 run.py
+```
 
 ## Deploy on Heroku
 The API deploy can be found at [link](https://app-melp.herokuapp.com/) 
 
 ## Test
 In the following [link](https://documenter.getpostman.com/view/5474037/RWgjY1vT) you can find a Postman collection to test the API.
+
+
