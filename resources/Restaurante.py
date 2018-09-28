@@ -4,17 +4,19 @@ from Model import db, Restaurant, RestaurantSchema
 
 restaurantes_schema = RestaurantSchema(many=True)
 restaurant_schema = RestaurantSchema()
-
 parser = reqparse.RequestParser()
 
 class Restaurante(Resource):
+    """The methods implemented for the Restaurante Class"""
     def get(self):
+    	"""This method return all restaurants"""
         restaurantes = Restaurant.query.all()
         print("Here")
         restaurantes = restaurantes_schema.dump(restaurantes).data
         return {'status': 'success', 'data': restaurantes}, 200
 
     def post(self):
+    	"""This method insert a new restaurant in the DB"""
         json_data = request.get_json(force=True)
         print (json_data)
         if not json_data:
@@ -47,11 +49,12 @@ class Restaurante(Resource):
         return { "status": 'success', 'data': result }, 201
 
     def put(self):
+    	"""This method update the information of a restaurant"""
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
         data, errors = restaurant_schema.load(json_data)
-        print("Errors :",data)
+        #print("Errors :",data)
         if errors:
             return errors, 422
         restaurant = Restaurant.query.filter_by(id=data['id']).first()
@@ -64,6 +67,7 @@ class Restaurante(Resource):
         return { "status": 'success', 'data': result }, 202
 
     def delete(self):
+    	"""This method delete a register from the DB"""
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -74,4 +78,4 @@ class Restaurante(Resource):
         db.session.commit()
         result = restaurant_schema.dump(restaurant).data
         #print ("El resultado es :",result)
-        return { "status": 'success', 'data': result,'message': 'Register delete'}, 200
+        return { "status": 'success', 'data': result,'message': 'Register deleted'}, 200
