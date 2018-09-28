@@ -10,12 +10,6 @@ $ git clone https://github.com/Jerry-Type/Melp.git
 $ cd Melp
 ```
 
-
-##### Creates the virtualenv in the Melp directory
-```bash
-$ python3 -m venv env
-```
-
 ##### Creates the virtualenv in the Melp directory
 ```bash
 $ python3 -m venv env
@@ -31,3 +25,8 @@ $ source env/bin/activate
 ```bash
 $ pip3 install -r requirements.txt
 ```
+
+## Test
+following [link](https://documenter.getpostman.com/view/5474037/RWgjY1vT) 
+you can find a Postman collection to test the API
+
