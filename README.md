@@ -29,14 +29,14 @@ $ pip3 install -r requirements.txt
 
 ##### Configure the DB
 ```bash
-$ pip3 migrate.py db init
-$ pip3 migrate.py db migrate
-$ pip3 migrate.py db upgrade
+$ python3 migrate.py db init
+$ python3 migrate.py db migrate
+$ python3 migrate.py db upgrade
 ```
 
 ##### Execute the App
 ```bash
-$ pip3 run.py
+$ python3 run.py
 ```
 
 ## Deploy on Heroku
