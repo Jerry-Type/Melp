@@ -1,5 +1,7 @@
 # Melp RESTful API
 
+This API provides useful information about some restaurants.
+
 ## Install guide
 
 
@@ -20,13 +22,21 @@ $ python3 -m venv env
 $ source env/bin/activate
 ```
 
-
 ##### Install the dependencies
 ```bash
 $ pip3 install -r requirements.txt
 ```
 
-## Test
-following [link](https://documenter.getpostman.com/view/5474037/RWgjY1vT) 
-you can find a Postman collection to test the API
+##### Configure the DB
+```bash
+$ pip3 migrate.py db init
+$ pip3 migrate.py db migrate
+$ pip3 migrate.py db upgrade
+```
 
+
+## Deploy on Heroku
+The API deploy can be found at [link](https://app-melp.herokuapp.com/) 
+
+## Test
+In the following [link](https://documenter.getpostman.com/view/5474037/RWgjY1vT) you can find a Postman collection to test the API.
